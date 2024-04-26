@@ -8,20 +8,28 @@
 	<webMaster>CHAR42</webMaster>
 	<generator>@theanswerto.life</generator>
 	<description>#SaveLowerDecks !!!</description> 
-
 	<image> 
-		<url>https://i.imgur.com/25mXBR3.jpeg</url>
+		<url>https://i.imgur.com/DRbBNJb.gif</url>
 		<link>https://theanswerto.life/</link>
 		<header_image>https://i.imgur.com/E9R6b8R.jpeg</header_image>
 	</image>
+
+
+	
 	<item>
-		<guid>3</guid>
-		<pubDate>Fri, 26 Apr 2024 14:38:00 +1200</pubDate>
-		<description>another reason why picard is my favourite captain of all time. <![CDATA[<img src="https://i.imgur.com/X5USEvM.jpegz">]]></description>
+		<guid>6</guid>
+		<pubDate>Fri, 26 Apr 2024 19:40:00 +1200</pubDate>
+		<description>CHAR42 updated their profile picture. <![CDATA[<img src="https://i.imgur.com/DRbBNJb.gif">]]></description>
 	</item>
 	
 	<item>
-		<guid>3</guid>
+		<guid>5</guid>
+		<pubDate>Fri, 26 Apr 2024 14:38:00 +1200</pubDate>
+		<description>another reason why picard is my favourite captain of all time. <![CDATA[<img src="https://i.imgur.com/X5USEvM.jpeg">]]></description>
+	</item>
+	
+	<item>
+		<guid>4</guid>
 		<pubDate>Fri, 26 Apr 2024 13:50:00 +1200</pubDate>
 		<description>yesterday i heard a massive BANG and then looked up to see a kereru sitting on the ground and an imprint on the window.<![CDATA[<img src="https://i.imgur.com/moCYSON.jpeg">]]> (note to self; get better image)</description>
 	</item>
