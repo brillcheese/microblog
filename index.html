@@ -19,21 +19,34 @@
     <div id="microblogContainer"></div>
 
     <script>
-
-let currentPage = 1;
-    const itemsPerPage = 5; // Number of items per page
-
-    function fetchPosts(page) {
-        fetch(`/microblog.xml?page=${page}&per_page=${itemsPerPage}`)
+        fetch('/microblog.xml')
             .then(response => response.text())
             .then(str => new window.DOMParser().parseFromString(str, 'text/xml'))
             .then(data => {
+                const channel = data.querySelector('channel');
+                const title = channel.querySelector('title').textContent;
+                const webMaster = channel.querySelector('webMaster').textContent;
+                const generator = channel.querySelector('generator').textContent;
+                const description = channel.querySelector('description').textContent;
+                const imageUrl = channel.querySelector('image url').textContent;
+                const headerImageUrl = channel.querySelector('header_image').textContent; 
+
                 const microblogContainer = document.getElementById('microblogContainer');
-                microblogContainer.innerHTML = ''; // Clear previous content
+
+                const profileDiv = document.createElement('div');
+                profileDiv.classList.add('centre');
+                profileDiv.innerHTML = `
+                    <img src="${headerImageUrl}" alt="Header Image" class="headerimg">
+                    <img src="${imageUrl}" alt="Profile Picture" class="pfpimg">
+                    <h1>${title}</h1>
+                    <span>${generator}</span>
+                    <p>${description}</p>
+                    <a href="https://mb.theanswerto.life/microblog.xml" target="_blank" id="follow">+ FOLLOW</a>
+                `;
+                microblogContainer.appendChild(profileDiv);
 
                 const items = data.querySelectorAll('item');
                 items.forEach(item => {
-                    // Extract item details as before
                     const guid = item.querySelector('guid').textContent;
                     const pubDate = item.querySelector('pubDate').textContent;
                     const description = item.querySelector('description').textContent;
@@ -50,37 +63,8 @@ let currentPage = 1;
                     `;
                     microblogContainer.appendChild(postDiv);
                 });
-
-                // Add pagination controls
-                const paginationDiv = document.createElement('div');
-                paginationDiv.classList.add('centre');
-
-                // Previous Page Button
-                const prevButton = document.createElement('button');
-                prevButton.textContent = 'Previous Page';
-                prevButton.addEventListener('click', () => {
-                    if (currentPage > 1) {
-                        currentPage--;
-                        fetchPosts(currentPage);
-                    }
-                });
-
-                // Next Page Button
-                const nextButton = document.createElement('button');
-                nextButton.textContent = 'Next Page';
-                nextButton.addEventListener('click', () => {
-                    currentPage++;
-                    fetchPosts(currentPage);
-                });
-
-                paginationDiv.appendChild(prevButton);
-                paginationDiv.appendChild(nextButton);
-
-                microblogContainer.appendChild(paginationDiv);
             })
-            .catch(error => document.getElementById("error").innerHTML = `Error fetching RSS feed: ${error}`);
-    }
-        
+            .catch(error => document.getElementById("error").innerHTML = `error fetchig rss feed ${error}`);
 function timeSince(date) {
 var seconds = Math.floor((new Date() - date) / 1000);
 var interval = seconds / 31536000;
